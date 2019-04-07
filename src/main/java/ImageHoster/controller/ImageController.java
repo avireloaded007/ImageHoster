@@ -102,6 +102,7 @@ public class ImageController {
 
         if(!creatorUsername.equalsIgnoreCase(user.getUsername())){
         String tags = convertTagsToString(image.getTags());
+
         model.addAttribute("image", image);
         model.addAttribute("tags", tags);
         model.addAttribute("editError", error);

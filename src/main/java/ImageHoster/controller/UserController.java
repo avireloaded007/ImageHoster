@@ -30,11 +30,21 @@ public class UserController {
     //Adds User type object to a model and returns 'users/registration.html' file
     @RequestMapping("users/registration")
     public String registration(Model model) {
+        String error = "Password must contain atleast 1 alphabet, 1 number & 1 special character";
         User user = new User();
+        if(user.checkPasswordStrength(user.getPassword()) == 100){
         UserProfile profile = new UserProfile();
         user.setProfile(profile);
         model.addAttribute("User", user);
         return "users/registration";
+        }else
+        {
+            UserProfile profile = new UserProfile();
+            user.setProfile(profile);
+            model.addAttribute("User", user);
+            model.addAttribute("passwordTypeError", error);
+            return "users/registration";
+        }
     }
 
     //This controller method is called when the request pattern is of type 'users/registration' and also the incoming request is of POST type

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -30,7 +29,7 @@ public class CommentController {
     //Store all the tags in the database and make a list of all the tags using the findOrCreateTags() method
     //set the tags attribute of the image as a list of all the tags returned by the findOrCreateTags() method
     @RequestMapping(value = "/image/{imageId}/{imageTitle}/comments", method = RequestMethod.POST)
-    public String createImage(@RequestParam("file") MultipartFile file, @RequestParam("comments") Comment comments, HttpSession session) throws IOException {
+    public String createImage(@RequestParam("comments") String comment, @RequestParam("comments") Comment comments, HttpSession session) throws IOException {
 
         User user = (User) session.getAttribute("loggeduser");
         comments.setUser(user);
